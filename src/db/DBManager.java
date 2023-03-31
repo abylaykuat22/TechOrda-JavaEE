@@ -1,7 +1,8 @@
-package models;
+package db;
 
 import java.util.ArrayList;
 import java.util.List;
+import models.Footballer;
 
 public class DBManager {
     public static List<Footballer> footballers = new ArrayList<>();
