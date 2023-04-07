@@ -2,26 +2,36 @@ package db;
 
 import java.util.ArrayList;
 import java.util.List;
-import models.Footballer;
+import models.Item;
 
 public class DBManager {
-    public static List<Footballer> footballers = new ArrayList<>();
+  private static List<Item> items = new ArrayList<>();
 
-    private static Long id = 4L;
-    static {
-        footballers.add(new Footballer(1L, "Lionel", "Messi", 2000000, "PSG", 200000));
-        footballers.add(new Footballer(2L, "Cristiano", "Ronaldo", 2000000, "Al Nassr", 200000));
-        footballers.add(new Footballer(3L, "Killian", "Mbappe", 2000000, "PSG", 200000));
+  private static Long id = 5L;
+
+  static {
+    items.add(new Item(1L, "IPhone X", 400000, 20));
+    items.add(new Item(2L, "IPhone 13", 500000, 10));
+    items.add(new Item(3L, "Samsung S21", 400000, 20));
+    items.add(new Item(4L, "XIAOMI", 300000, 50));
+  }
+
+  public static List<Item> getItems() {
+    return items;
+  }
+
+  public static void addItem(Item item) {
+    item.setId(id);
+    items.add(item);
+    id++;
+  }
+
+  public static Item getItemById(Long id) {
+    for (Item item : items) {
+      if (item.getId() == id) {
+        return item;
+      }
     }
-
-    public static List<Footballer> getFootballers() {
-        return footballers;
-    }
-
-    public static void addFootballer(Footballer footballer) {
-        footballer.setId(id);
-        footballers.add(footballer);
-        id++;
-    }
-
+    return null;
+  }
 }
