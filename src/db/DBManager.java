@@ -2,36 +2,34 @@ package db;
 
 import java.util.ArrayList;
 import java.util.List;
-import models.Item;
+import models.News;
 
 public class DBManager {
-  private static List<Item> items = new ArrayList<>();
+  private static List<News> news = new ArrayList<>();
 
   private static Long id = 5L;
 
   static {
-    items.add(new Item(1L, "IPhone X", 400000, 20));
-    items.add(new Item(2L, "IPhone 13", 500000, 10));
-    items.add(new Item(3L, "Samsung S21", 400000, 20));
-    items.add(new Item(4L, "XIAOMI", 300000, 50));
+    news.add(new News(1L, "Title sport 1", "Content sport 1", "Author 1", "sport"));
+    news.add(new News(2L, "Title sport 2", "Content sport 2", "Author 2", "sport"));
+    news.add(new News(3L, "Title culture 1", "Content culture 1", "Author 3", "culture"));
+    news.add(new News(4L, "Title culture 2", "Content sport 2", "Author 1", "culture"));
+    news.add(new News(4L, "Title cinema 2", "Content cinema 2", "Author 2", "cinema"));
+    news.add(new News(4L, "Title cinema 2", "Content cinema 3", "Author 1", "cinema"));
   }
 
-  public static List<Item> getItems() {
-    return items;
+  public static List<News> getNews() {
+    return news;
   }
 
-  public static void addItem(Item item) {
-    item.setId(id);
-    items.add(item);
-    id++;
-  }
-
-  public static Item getItemById(Long id) {
-    for (Item item : items) {
-      if (item.getId() == id) {
-        return item;
+  public static List<News> getCultureNews() {
+    List<News> cultureNews = new ArrayList<>();
+    for (News n : news) {
+      if (n.getCategory().equals("culture")){
+        cultureNews.add(n);
       }
     }
-    return null;
+    return cultureNews;
   }
+
 }

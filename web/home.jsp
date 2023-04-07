@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="models.Item" %><%--
+<%@ page import="models.News" %><%--
   Created by IntelliJ IDEA.
   User: Kuat
   Date: 07.04.2023
@@ -15,31 +15,19 @@
 <body>
  <%@include file="navbar.jsp"%>
  <div class="container">
-     <table class="table table-striped">
-         <thead>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>PRICE</th>
-            <th>DETAILS</th>
-         </thead>
-         <tbody>
-             <%
-                 List<Item> items = (List<Item>) request.getAttribute("veshi");
-                 if (items != null) {
-                     for (Item item : items) {
-             %>
-                <tr>
-                    <td><%=item.getId()%></td>
-                    <td><%=item.getName()%></td>
-                    <td><%=item.getPrice()%></td>
-                    <td><a href="/itemDetails?id=<%=item.getId()%>" class="btn btn-dark">DETAILS</a></td>
-                </tr>
-             <%
-                     }
-                 }
-             %>
-         </tbody>
-     </table>
+     <%
+         List<News> news = (List<News>) request.getAttribute("zhanalyktar");
+         if (news != null) {
+             for (News n : news) {
+     %>
+     <h3><%=n.getTitle()%></h3>
+     <p><%=n.getContent()%></p>
+     <p>Author: <strong><%=n.getAuthor()%></strong></p>
+     <hr>
+     <%
+             }
+         }
+     %>
  </div>
 </body>
 </html>

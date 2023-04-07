@@ -7,18 +7,17 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import models.Item;
+import java.util.List;
+import models.News;
 
-@WebServlet(value = "/itemDetails")
-public class ItemDetailsServlet extends HttpServlet {
+@WebServlet(value = "/cultureNews")
+public class CultureNewsServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    Long id = Long.parseLong(req.getParameter("id"));
-    Item item = DBManager.getItemById(id);
-    req.setAttribute("zat", item);
-    req.getRequestDispatcher("/itemDetails.jsp").forward(req, resp);
+    List<News> cultureNews = DBManager.getCultureNews();
+    req.setAttribute("cultureNews", cultureNews);
+    req.getRequestDispatcher("/cultureNews.jsp").forward(req, resp);
   }
 }

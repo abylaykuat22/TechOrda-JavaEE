@@ -8,15 +8,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import models.Item;
+import models.News;
 
 @WebServlet(value = "/home")
 public class HomeServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    List<Item> items = DBManager.getItems();
-    req.setAttribute("veshi", items);
+    List<News> news = DBManager.getNews();
+    req.setAttribute("zhanalyktar", news);
     req.getRequestDispatcher("/home.jsp").forward(req, resp);
   }
 }
