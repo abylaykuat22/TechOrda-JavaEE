@@ -1,4 +1,6 @@
-<%@ page import="models.Student" %><%--
+<%@ page import="models.Student" %>
+<%@ page import="java.util.List" %>
+<%@ page import="models.City" %><%--
   Created by IntelliJ IDEA.
   User: Kuat
   Date: 14.04.2023
@@ -28,6 +30,7 @@
                 <input class="form-control" type="text" name="name" value="<%=student.getName()%>">
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-6">
                 SURNAME:
@@ -37,6 +40,7 @@
                        value="<%=student.getSurname()%>">
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-6">
                 BIRTHDATE:
@@ -46,12 +50,26 @@
                        value="<%=student.getBirthdate()%>">
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-6">
                 CITY:
             </div>
             <div class="col-6">
-                <input type="text" name="city" value="<%=student.getCity()%>">
+                <select name="city_id">
+                    <%
+                        List<City> cities = (List<City>) request.getAttribute("kalalar");
+                        if (cities != null) {
+                            for (City city : cities) {
+                    %>
+                    <option value="<%=city.getId()%>">
+                        <%=city.getName()%> / <%=city.getCode()%>
+                    </option>
+                    <%
+                            }
+                        }
+                    %>
+                </select>
             </div>
         </div>
         <button class="btn btn-success">SAVE STUDENT</button>

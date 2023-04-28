@@ -6,15 +6,9 @@ public class Student {
   private String name;
   private String surname;
   private String birthdate;
-  private String city;
+  private City city;
 
-  public Student(Long id, String name, String surname, String birthdate, String city) {
-    this.id = id;
-    this.name = name;
-    this.surname = surname;
-    this.birthdate = birthdate;
-    this.city = city;
-  }
+  private University university;
 
   public Student() {
   }
@@ -51,11 +45,19 @@ public class Student {
     this.birthdate = birthdate;
   }
 
-  public String getCity() {
+  public City getCity() {
     return city;
   }
 
-  public void setCity(String city) {
+  public void setCity(City city) {
     this.city = city;
+  }
+
+  public University getUniversity() {
+    return university;
+  }
+
+  public void setUniversity(University university) {
+    this.university = university;
   }
 }

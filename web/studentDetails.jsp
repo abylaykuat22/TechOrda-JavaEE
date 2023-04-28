@@ -50,7 +50,18 @@
             CITY:
         </div>
         <div class="col-6">
-            <strong><%=student.getCity()%>
+            <strong><%=student.getCity().getName()%> / <%=student.getCity().getCode()%>
+            </strong>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-6">
+            UNIVERSITY:
+        </div>
+        <div class="col-6">
+            <strong><%=student.getUniversity().getName()%> – <%=student.getUniversity()
+                    .getRating()%>
             </strong>
         </div>
     </div>

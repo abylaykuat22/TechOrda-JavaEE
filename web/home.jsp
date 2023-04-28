@@ -1,6 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="models.News" %>
-<%@ page import="models.Student" %><%--
+<%@ page import="models.Student" %>
+<%@ page import="models.City" %>
+<%@ page import="models.University" %><%--
   Created by IntelliJ IDEA.
   User: Kuat
   Date: 07.04.2023
@@ -28,6 +30,7 @@
         <th>NAME</th>
         <th>SURNAME</th>
         <th>CITY</th>
+        <th>University</th>
         <th>DETAILS</th>
         </thead>
         <tbody>
@@ -43,7 +46,9 @@
             </td>
             <td><%=student.getSurname()%>
             </td>
-            <td><%=student.getCity()%>
+            <td><%=student.getCity().getName()%> / <%=student.getCity().getCode()%>
+            </td>
+            <td><%=student.getUniversity().getName()%> – <%=student.getUniversity().getRating()%>
             </td>
             <td><a href="/studentDetails?id=<%=student.getId()%>" class="btn btn-dark">DETAILS</a>
             </td>
@@ -104,8 +109,41 @@
                         </div>
                         <div class="col-10">
                             <select name="s_city" class="form-select">
-                                <option>Almaty</option>
-                                <option>Astana</option>
+                                <%
+                                    List<City> cities = (List<City>) request.getAttribute("goroda");
+                                    if (cities != null) {
+                                        for (City city : cities) {
+                                %>
+                                <option value="<%=city.getId()%>"><%=city.getName()%>
+                                    / <%=city.getCode()%>
+                                </option>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-2">
+                            CITY:
+                        </div>
+                        <div class="col-10">
+                            <select name="university_id" class="form-select">
+                                <%
+                                    List<University> universities = (List<University>) request.getAttribute(
+                                            "universitetter");
+                                    if (universities != null) {
+                                        for (University uni : universities) {
+                                %>
+                                <option value="<%=uni.getId()%>"><%=uni.getName()%>
+                                    – <%=uni.getRating()%>
+                                </option>
+                                <%
+                                        }
+                                    }
+                                %>
                             </select>
                         </div>
                     </div>
